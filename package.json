@@ -1,0 +1,23 @@
+{
+  "name": "@slimkit-ui/router",
+  "version": "1.0.0",
+  "description": "Client side router for SPA applications written in Javascript",
+  "files": [
+    "/dist"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "rollup-plugin-terser": "^7.0.0",
+    "rollup": "^2.52.8"
+  },
+  "keywords": [
+    "router",
+    "spa",
+    "svelte"
+  ],
+  "author": "Thilanka N. Liyanaarachchi",
+  "license": "MIT"
+}
