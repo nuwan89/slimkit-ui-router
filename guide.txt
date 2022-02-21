@@ -1,0 +1,19 @@
+
+How to publish
+---------------
+
+npm run build
+npm publish --access public
+
+
+How to publish and use locally
+------------------------------
+
+npm run build
+npm pack
+
+Go to your local project and copy .tgz to project root
+
+delete node_modules/@slimkit-ui/router
+
+npm i slimkit-ui-router-1.0.0.tgz
