@@ -3,6 +3,7 @@
  */
 
  export let routeTree;
+ let eagerLoad
 
  class Node {
      constructor(key, value) {
@@ -66,7 +67,7 @@
          return temp
      }
  }
- 
+
  /**
   * Build route tree internally so navigate can yeild results. After route data are built,
   * it will automatically call navigate on the current URL and return the module (page) and parameters
@@ -74,8 +75,8 @@
   * @param "/": { component: async () => import('./pages/Form.svelte'), params: { } },
           "/about": { component: async () => import('./pages/About.svelte') }, routes 
   */
- export const init = async (routes) => {
- 
+ export const init = async (routes, eagerLoad) => {
+     eagerLoad = eagerLoad
      routeTree = new Tree();
  
      for (let routeKey of Object.keys(routes)) {
@@ -130,9 +131,11 @@
              // let tar = value.component() ? value.component()[0] : value.component
          }
      }
-     let component = value.component
-     if (typeof component == 'function') {
-         component = component({ ...value.params })[0]
+     if (eagerLoad) { //Eagerly load ES modules when initializing
+        let component = value.component
+        if (typeof component == 'function') {
+            component = component({ ...value.params })[0]
+        }
      }
  
      //Check if there are children left
